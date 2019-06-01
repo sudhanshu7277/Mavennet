@@ -1,0 +1,79 @@
+<header class="text-center">
+  <div class="container">
+    <h1 class="font-weight-light text-white">Make your Selection</h1>
+  </div>
+</header>
+
+<div class="container">
+    <div>
+        <select
+      [(ngModel)]="filteredValue" (change)="filteredValueCaptured(filteredValue)"
+      class="form-control">
+      <option value="">Filter by Users/ Albums/ Pctures</option>
+      <option *ngFor="let positionOpt of myFilterDropdown" [ngValue]="positionOpt">{{positionOpt.name}}</option>
+    </select>
+    </div>
+    <!--USERS-->
+    <div *ngIf="userBoolean">
+    <div class="row">
+      <div class="col-xl-12 col-md-6 mb-4 user-padding" *ngFor="let item of usersData; let index=index;">
+          <div class="thumbnail">
+              <div class="caption text-center">
+
+                <h4 id="thumbnail-label">{{item.name}}</h4>
+                <p><i class="glyphicon glyphicon-user light-red lighter bigger-120"></i>&nbsp;{{item.title}}</p>
+                <div class="thumbnail-description smaller">Company Name: <b>{{item.company.name}}</b></div>
+                <div class="thumbnail-description smaller">Company Address: <b>{{item.address.street}}<br>
+                  {{item.address.suite}}<br>{{item.address.city}} - {{item.address.zipcode}}</b></div>
+              </div>
+              <div class="caption card-footer text-center">
+                <ul class="list-inline">
+                  <li></li>
+                  <li><i class="glyphicon glyphicon-envelope lighter"></i><a href="#">&nbsp;<b>{{item.email}}</b></a></li>
+                </ul>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+    <!--ALBUMS-->
+    <div *ngIf="albumBoolean">
+    <div class="row" *ngIf="albumBoolean">
+        <div class="col-xl-12 col-md-6 mb-4 user-padding" *ngFor="let item of albumsData; let index=index;">
+            <div class="thumbnail">
+                <div class="caption text-center">
+                  <div class="position-relative">
+                  </div>
+                  <h4 id="thumbnail-label">{{item.name}}</h4>
+                  <p><i class="glyphicon glyphicon-user light-red lighter bigger-120"></i>&nbsp;{{item.title}}</p>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+    <!--PICTURES-->
+      <div *ngIf="photosBoolean">
+      <div class="row" (scroll)="scrollHandler($event)" >
+          <div class="col-xl-12 col-md-6 mb-4 user-padding" *ngFor="let item of picturesPosts; let index=index;">
+              <div class="thumbnail">
+                  <div class="caption text-center">
+                    <div class="position-relative">
+                      <img class="imageStyles" [src]="item.thumbnailUrl"/>
+                    </div>
+                    <h4 id="thumbnail-label">{{item.name}}</h4>
+                    <p><i class="glyphicon glyphicon-user light-red lighter bigger-120"></i>&nbsp;{{item.title}}</p>
+                    <div class="thumbnail-description smaller">Company Name: <b>{{item.username}}</b></div>
+                  </div>
+                  <div class="caption card-footer text-center">
+                    <ul class="list-inline">
+                      <li></li>
+                      <li><i class="glyphicon glyphicon-envelope lighter"></i><a href="#">&nbsp;<b>{{item.email}}</b></a></li>
+                    </ul>
+                  </div>
+                </div>
+          </div>
+        </div>
+        </div>
+  </div>
+
+
